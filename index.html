@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ticket Desk — Task Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="desk">
+
+    <header class="nameplate">
+      <div class="nameplate__title">
+        <span class="nameplate__mark">◍</span>
+        <h1>Ticket Desk</h1>
+      </div>
+      <p class="nameplate__subtitle">A queue for the work that's actually in front of you.</p>
+    </header>
+
+    <section class="stats" aria-label="Ticket summary">
+      <div class="stat">
+        <span class="stat__value" id="statOpen">0</span>
+        <span class="stat__label">Open</span>
+      </div>
+      <div class="stat">
+        <span class="stat__value" id="statProgress">0</span>
+        <span class="stat__label">In progress</span>
+      </div>
+      <div class="stat">
+        <span class="stat__value" id="statDone">0</span>
+        <span class="stat__label">Closed</span>
+      </div>
+    </section>
+
+    <section class="controls" aria-label="Filter and sort tickets">
+      <input
+        type="search"
+        id="searchInput"
+        class="control control--search"
+        placeholder="Search tickets…"
+        aria-label="Search tickets by title"
+      >
+
+      <select id="statusFilter" class="control" aria-label="Filter by status">
+        <option value="all">All statuses</option>
+        <option value="open">Open</option>
+        <option value="in-progress">In progress</option>
+        <option value="done">Closed</option>
+      </select>
+
+      <select id="priorityFilter" class="control" aria-label="Filter by priority">
+        <option value="all">All priorities</option>
+        <option value="urgent">Urgent</option>
+        <option value="high">High</option>
+        <option value="medium">Medium</option>
+        <option value="low">Low</option>
+      </select>
+
+      <select id="sortBy" class="control" aria-label="Sort tickets">
+        <option value="created-desc">Newest first</option>
+        <option value="created-asc">Oldest first</option>
+        <option value="priority">Priority, high to low</option>
+        <option value="due">Due date, soonest first</option>
+      </select>
+
+      <button id="newTicketBtn" class="btn btn--primary" type="button">
+        + New ticket
+      </button>
+    </section>
+
+    <!-- New / edit ticket form, hidden until opened -->
+    <section class="ticket-form" id="ticketForm" hidden>
+      <form id="form">
+        <input type="hidden" id="editingId" value="">
+
+        <div class="field">
+          <label for="titleInput">Title</label>
+          <input type="text" id="titleInput" required maxlength="80" placeholder="e.g. Fix broken checkout button on mobile">
+        </div>
+
+        <div class="field">
+          <label for="descInput">Description</label>
+          <textarea id="descInput" rows="3" maxlength="400" placeholder="What's broken, what's expected, and any repro steps."></textarea>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="priorityInput">Priority</label>
+            <select id="priorityInput">
+              <option value="low">Low</option>
+              <option value="medium" selected>Medium</option>
+              <option value="high">High</option>
+              <option value="urgent">Urgent</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="statusInput">Status</label>
+            <select id="statusInput">
+              <option value="open" selected>Open</option>
+              <option value="in-progress">In progress</option>
+              <option value="done">Closed</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="dueInput">Due date</label>
+            <input type="date" id="dueInput">
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn--ghost" id="cancelBtn">Cancel</button>
+          <button type="submit" class="btn btn--primary" id="submitBtn">Add ticket</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="ticket-list" id="ticketList" aria-label="Ticket queue">
+      <!-- Tickets render here -->
+    </section>
+
+    <div class="empty-state" id="emptyState" hidden>
+      <p class="empty-state__mark">— queue clear —</p>
+      <p class="empty-state__text">No tickets match right now. Open one, or adjust the filters above.</p>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
