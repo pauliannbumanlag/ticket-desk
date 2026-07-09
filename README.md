@@ -2,7 +2,7 @@
 
 A lightweight ticket/task tracker built with vanilla JavaScript, HTML, and CSS — no framework, no backend. Designed to mirror how a freelance developer would triage real client bug-fix and maintenance requests.
 
-**[Live demo →](#)** *(add your deployed link here once hosted)*
+**[Live demo →](#)** *https://pauliannbumanlag.github.io/ticket-desk/*
 
 ![Ticket Desk screenshot](#) *(add a screenshot or GIF here)*
 
